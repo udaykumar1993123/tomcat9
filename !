@@ -1,0 +1,12 @@
+FROM centos:7
+MAINTAINER uday
+RUN yum -y update 
+RUN yum -y install openjdk-8-jdk wget
+RUN mkdir /usr/local/tomcat
+RUN wget http://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.17/bin/apache-tomcat-9.0.17.tar.gz
+RUN mv apache-tomcat-9.0.17.tar.gz /opt
+RUN  cd /opt && tar -xzf apache-tomcat-9.0.17.tar.gz -C /usr/local/tomcat
+#RUN cp /opt/apache-tomcat-9.0.17/* /usr/local/tomcat
+RUN cd /usr/local/tomcat
+RUN ./startup.sh
+EXPOSE 8080
